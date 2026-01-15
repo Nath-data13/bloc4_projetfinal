@@ -45,16 +45,30 @@ services:
       interval: 5s
       retries: 5
     restart: always
+
   jenkins:
-    image: jenkins/jenkins:lts
+    build:
+      context: ..  # On remonte d'un cran pour voir tout le projet
+      dockerfile: jenkins/Dockerfile.jenkins
     privileged: true
     user: root
+    container_name: airflow_feu-jenkins-1
     ports:
-      - "8081:8080" # On utilise 8081 car 8080 est souvent pris
+      - "8081:8080"
       - "50000:50000"
     volumes:
       - jenkins_data:/var/jenkins_home
-      - /var/run/docker.sock:/var/run/docker.sock # Pour que Jenkins puisse utiliser Docker 
+      - /var/run/docker.sock:/var/run/docker.sock # Crucial pour piloter Docker  
+  # jenkins:
+  #   image: jenkins/jenkins:lts
+  #   privileged: true
+  #   user: root
+  #   ports:
+  #     - "8081:8080" # On utilise 8081 car 8080 est souvent pris
+  #     - "50000:50000"
+  #   volumes:
+  #     - jenkins_data:/var/jenkins_home
+  #     - /var/run/docker.sock:/var/run/docker.sock # Pour que Jenkins puisse utiliser Docker 
 
   redis:
     image: redis:latest
