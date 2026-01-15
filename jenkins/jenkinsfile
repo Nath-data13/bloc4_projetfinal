@@ -26,7 +26,7 @@ pipeline {
         stage('Build Docker image') {
             steps {
                 // On build l'image en utilisant le Dockerfile qui est dans airflow-feu
-                sh 'docker build -t fire-tests ./airflow-feu'
+                sh 'docker build -t fire-tests ./airflow_feu'
             }
         }
 
