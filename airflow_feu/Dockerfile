@@ -6,6 +6,7 @@ USER airflow
 
 # On garde tes versions qui fonctionnent
 RUN pip install --no-cache-dir \
+    pytest \
     xgboost==3.0.5 \
     scikit-learn \
     joblib \
