@@ -1,0 +1,76 @@
+pipeline {
+    agent any
+
+    environment {
+        AWS_DEFAULT_REGION = 'eu-west-3' // Région pour la Corse/France
+    }
+
+    stages {
+        stage('Checkout') {
+            steps {
+                // Télécharge le code depuis GitHub
+                checkout scm
+            }
+        }
+
+        stage('Docker sanity check') {
+            steps {
+                sh '''
+                    echo "=== Vérification de Docker ==="
+                    docker --version
+                    docker ps
+                '''
+            }
+        }
+
+        stage('Build Docker image') {
+            steps {
+                // On build l'image en utilisant le Dockerfile qui est dans airflow-feu
+                sh 'docker build -t fire-tests ./airflow-feu'
+            }
+        }
+
+        stage('Run tests') {
+            steps {
+                // Utilisation des identifiants sécurisés configurés dans Jenkins
+                withCredentials([
+                    string(credentialsId: 'AWS_ACCESS_KEY_ID', variable: 'AWS_ACCESS_KEY_ID'),
+                    string(credentialsId: 'AWS_SECRET_ACCESS_KEY', variable: 'AWS_SECRET_ACCESS_KEY'),
+                    string(credentialsId: 'AWS_BUCKET_NAME', variable: 'AWS_BUCKET_NAME')
+                ]) {
+                    sh '''
+                        echo "=== Nettoyage et Lancement des tests Pytest ==="
+                        docker rm -f fire-tests-container || true
+
+                        docker run --name fire-tests-container \
+                          -e CI=true \
+                          -e AWS_ACCESS_KEY_ID \
+                          -e AWS_SECRET_ACCESS_KEY \
+                          -e AWS_DEFAULT_REGION \
+                          -e AWS_BUCKET_NAME \
+                          fire-tests \
+                          pytest tests/ --junitxml=pytest-report.xml
+                    '''
+                }
+            }
+        }
+
+        stage('Collect Results') {
+            steps {
+                sh '''
+                    echo "=== Récupération du rapport de test ==="
+                    mkdir -p pytest-reports
+                    docker cp fire-tests-container:/opt/airflow/pytest-report.xml pytest-reports/pytest-report.xml
+                    docker rm fire-tests-container
+                '''
+                // Affiche le résultat des tests graphiquement dans Jenkins
+                junit testResults: 'pytest-reports/pytest-report.xml'
+            }
+        }
+    }
+
+    post {
+        success { echo '✅ Super ! Le code est validé et les tests sont au vert.' }
+        failure { echo '❌ Attention, les tests ont échoué. Vérifie tes imports ou tes accès AWS.' }
+    }
+}

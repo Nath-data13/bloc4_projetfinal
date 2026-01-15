@@ -45,6 +45,16 @@ services:
       interval: 5s
       retries: 5
     restart: always
+  jenkins:
+    image: jenkins/jenkins:lts
+    privileged: true
+    user: root
+    ports:
+      - "8081:8080" # On utilise 8081 car 8080 est souvent pris
+      - "50000:50000"
+    volumes:
+      - jenkins_data:/var/jenkins_home
+      - /var/run/docker.sock:/var/run/docker.sock # Pour que Jenkins puisse utiliser Docker 
 
   redis:
     image: redis:latest
@@ -146,3 +156,4 @@ services:
 volumes:
   postgres-db-volume:
   airflow_outputs:
+  jenkins_data:
