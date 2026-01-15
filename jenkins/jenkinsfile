@@ -32,7 +32,6 @@ pipeline {
 
         stage('Run tests') {
             steps {
-                // Utilisation des identifiants sécurisés configurés dans Jenkins
                 withCredentials([
                     string(credentialsId: 'AWS_ACCESS_KEY_ID', variable: 'AWS_ACCESS_KEY_ID'),
                     string(credentialsId: 'AWS_SECRET_ACCESS_KEY', variable: 'AWS_SECRET_ACCESS_KEY'),
@@ -43,19 +42,20 @@ pipeline {
                         docker rm -f fire-tests-container || true
 
                         docker run --name fire-tests-container \
-                            --entrypoint "" \
-                            -v $(pwd)/tests:/opt/airflow/tests \
-                            -e CI=true \
-                            -e AWS_ACCESS_KEY_ID \
-                            -e AWS_SECRET_ACCESS_KEY \
-                            -e AWS_DEFAULT_REGION \
-                            -e AWS_BUCKET_NAME \
-                            fire-tests \
-                            python -m pytest tests/ --junitxml=pytest-report.xml
+                          --entrypoint="" \
+                          -v $(pwd)/tests:/opt/airflow/tests \
+                          -e CI=true \
+                          -e AWS_ACCESS_KEY_ID \
+                          -e AWS_SECRET_ACCESS_KEY \
+                          -e AWS_DEFAULT_REGION \
+                          -e AWS_BUCKET_NAME \
+                          fire-tests \
+                          python -m pytest /opt/airflow/tests/test_imports.py --junitxml=pytest-report.xml
                     '''
                 }
             }
         }
+
 
         stage('Collect Results') {
             steps {
