@@ -44,6 +44,7 @@ pipeline {
 
                         docker run --name fire-tests-container \
                             --entrypoint "" \
+                            -v $(pwd)/tests:/opt/airflow/tests \
                             -e CI=true \
                             -e AWS_ACCESS_KEY_ID \
                             -e AWS_SECRET_ACCESS_KEY \
