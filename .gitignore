@@ -1,0 +1,31 @@
+# === Sécurité (LE PLUS IMPORTANT) ===
+secrets.env
+.env
+*.secret.env
+
+# === Airflow & Docker ===
+airflow-feu/logs/
+airflow-feu/airflow.db
+airflow-feu/airflow.cfg
+airflow-feu/webserver_config.py
+.pdm-python
+.pdm-build/
+
+# === Data Science (Gros fichiers) ===
+*.csv
+*.xlsx
+*.pkl
+*.joblib
+*.pth
+mlruns/
+mlartifacts/
+mlflow.db
+
+# === Python & Système ===
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.DS_Store
+.vscode/
+.ipynb_checkpoints/

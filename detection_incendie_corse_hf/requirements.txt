@@ -1,0 +1,11 @@
+altair
+streamlit
+pandas
+numpy
+mlflow
+boto3
+scikit-survival
+xgboost
+scikit-learn
+python-dotenv
+plotly
