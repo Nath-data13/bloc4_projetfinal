@@ -1,0 +1,18 @@
+[2026-01-15T17:08:50.897+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2026-01-15T17:08:50.927+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: test_simple_airflow_feu.dire_hello manual__2026-01-15T17:08:49.925410+00:00 [queued]>
+[2026-01-15T17:08:50.934+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: test_simple_airflow_feu.dire_hello manual__2026-01-15T17:08:49.925410+00:00 [queued]>
+[2026-01-15T17:08:50.935+0000] {taskinstance.py:2306} INFO - Starting attempt 1 of 1
+[2026-01-15T17:08:50.954+0000] {taskinstance.py:2330} INFO - Executing <Task(PythonOperator): dire_hello> on 2026-01-15 17:08:49.925410+00:00
+[2026-01-15T17:08:50.964+0000] {standard_task_runner.py:63} INFO - Started process 62 to run task
+[2026-01-15T17:08:50.974+0000] {standard_task_runner.py:90} INFO - Running: ['***', 'tasks', 'run', 'test_simple_***_feu', 'dire_hello', 'manual__2026-01-15T17:08:49.925410+00:00', '--job-id', '10', '--raw', '--subdir', 'DAGS_FOLDER/test_***_feu.py', '--cfg-path', '/tmp/tmpxei6x82y']
+[2026-01-15T17:08:50.976+0000] {standard_task_runner.py:91} INFO - Job 10: Subtask dire_hello
+[2026-01-15T17:08:51.133+0000] {task_command.py:426} INFO - Running <TaskInstance: test_simple_airflow_feu.dire_hello manual__2026-01-15T17:08:49.925410+00:00 [running]> on host 62cc7925c04c
+[2026-01-15T17:08:51.273+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='test_simple_***_feu' AIRFLOW_CTX_TASK_ID='dire_hello' AIRFLOW_CTX_EXECUTION_DATE='2026-01-15T17:08:49.925410+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2026-01-15T17:08:49.925410+00:00'
+[2026-01-15T17:08:51.274+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2026-01-15T17:08:51.288+0000] {logging_mixin.py:188} INFO - 🔥 Airflow Projet Feu est opérationnel !
+[2026-01-15T17:08:51.289+0000] {python.py:237} INFO - Done. Returned value was: Succès
+[2026-01-15T17:08:51.290+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2026-01-15T17:08:51.312+0000] {taskinstance.py:1206} INFO - Marking task as SUCCESS. dag_id=test_simple_***_feu, task_id=dire_hello, run_id=manual__2026-01-15T17:08:49.925410+00:00, execution_date=20260115T170849, start_date=20260115T170850, end_date=20260115T170851
+[2026-01-15T17:08:51.351+0000] {local_task_job_runner.py:240} INFO - Task exited with return code 0
+[2026-01-15T17:08:51.368+0000] {taskinstance.py:3503} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2026-01-15T17:08:51.371+0000] {local_task_job_runner.py:222} INFO - ::endgroup::

@@ -42,15 +42,16 @@ pipeline {
                         echo "=== Nettoyage et Lancement des tests ==="
                         docker rm -f fire-tests-container || true
 
-                        # 1. Création du conteneur
+                        # 1. Création du conteneur avec l'utilisateur root pour éviter les soucis de permissions
                         docker create --name fire-tests-container \
+                          -u root \
                           --entrypoint="" \
                           -e AWS_ACCESS_KEY_ID -e AWS_SECRET_ACCESS_KEY -e AWS_BUCKET_NAME \
                           -e DATABASE_URL -e MLFLOW_TRACKING_URI \
                           fire-tests \
-                          bash -c "python3 -m py_compile airflow_feu/dags/*.py && python -m pytest tests/test_imports.py --junitxml=pytest-report.xml"
+                          bash -c "find . -name '__pycache__' -type d -exec rm -rf {} + && python3 -m py_compile airflow_feu/dags/*.py && python -m pytest tests/test_imports.py --junitxml=pytest-report.xml"
                         
-                        # 2. Copie de TOUT le projet pour la vérification des DAGs
+                        # 2. Copie du projet
                         docker cp . fire-tests-container:/opt/airflow/
 
                         # 3. Lancement
@@ -60,6 +61,37 @@ pipeline {
                 }
             }
         }
+        // stage('Run tests') {
+        //     steps {
+        //         withCredentials([
+        //             string(credentialsId: 'AWS_ACCESS_KEY_ID', variable: 'AWS_ACCESS_KEY_ID'),
+        //             string(credentialsId: 'AWS_SECRET_ACCESS_KEY', variable: 'AWS_SECRET_ACCESS_KEY'),
+        //             string(credentialsId: 'AWS_BUCKET_NAME', variable: 'AWS_BUCKET_NAME'),
+        //             string(credentialsId: 'DATABASE_URL', variable: 'DATABASE_URL'),
+        //             string(credentialsId: 'MLFLOW_TRACKING_URI', variable: 'MLFLOW_TRACKING_URI')
+        //         ]) {
+        //             sh '''
+        //                 echo "=== Nettoyage et Lancement des tests ==="
+        //                 docker rm -f fire-tests-container || true
+
+        //                 # 1. Création du conteneur
+        //                 docker create --name fire-tests-container \
+        //                   --entrypoint="" \
+        //                   -e AWS_ACCESS_KEY_ID -e AWS_SECRET_ACCESS_KEY -e AWS_BUCKET_NAME \
+        //                   -e DATABASE_URL -e MLFLOW_TRACKING_URI \
+        //                   fire-tests \
+        //                   bash -c "python3 -m py_compile airflow_feu/dags/*.py && python -m pytest tests/test_imports.py --junitxml=pytest-report.xml"
+                        
+        //                 # 2. Copie de TOUT le projet pour la vérification des DAGs
+        //                 docker cp . fire-tests-container:/opt/airflow/
+
+        //                 # 3. Lancement
+        //                 echo "=== Vérification Syntaxique et Tests de Connexion ==="
+        //                 docker start -a fire-tests-container
+        //             '''
+        //         }
+        //     }
+        // }
         // stage('Run tests') {
         //     steps {
         //         withCredentials([
