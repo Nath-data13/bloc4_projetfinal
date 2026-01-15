@@ -1,0 +1,32 @@
+[2026-01-15T16:35:01.852+0000] {processor.py:161} INFO - Started process (PID=40) to work on /opt/airflow/dags/test_airflow_feu.py
+[2026-01-15T16:35:01.854+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/test_airflow_feu.py for tasks to queue
+[2026-01-15T16:35:01.859+0000] {logging_mixin.py:188} INFO - [2026-01-15T16:35:01.859+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/test_airflow_feu.py
+[2026-01-15T16:35:01.900+0000] {processor.py:840} INFO - DAG(s) 'test_simple_airflow_feu' retrieved from /opt/airflow/dags/test_airflow_feu.py
+[2026-01-15T16:35:02.227+0000] {logging_mixin.py:188} INFO - [2026-01-15T16:35:02.227+0000] {override.py:1829} INFO - Created Permission View: can delete on DAG:test_simple_airflow_feu
+[2026-01-15T16:35:02.235+0000] {logging_mixin.py:188} INFO - [2026-01-15T16:35:02.235+0000] {override.py:1829} INFO - Created Permission View: can edit on DAG:test_simple_airflow_feu
+[2026-01-15T16:35:02.252+0000] {logging_mixin.py:188} INFO - [2026-01-15T16:35:02.251+0000] {override.py:1829} INFO - Created Permission View: can read on DAG:test_simple_airflow_feu
+[2026-01-15T16:35:02.252+0000] {logging_mixin.py:188} INFO - [2026-01-15T16:35:02.252+0000] {dag.py:3096} INFO - Sync 1 DAGs
+[2026-01-15T16:35:02.269+0000] {logging_mixin.py:188} INFO - [2026-01-15T16:35:02.269+0000] {dag.py:3118} INFO - Creating ORM DAG for test_simple_airflow_feu
+[2026-01-15T16:35:02.272+0000] {logging_mixin.py:188} INFO - [2026-01-15T16:35:02.271+0000] {dag.py:3954} INFO - Setting next_dagrun for test_simple_airflow_feu to None, run_after=None
+[2026-01-15T16:35:02.306+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/test_airflow_feu.py took 0.460 seconds
+[2026-01-15T16:35:32.592+0000] {processor.py:161} INFO - Started process (PID=41) to work on /opt/airflow/dags/test_airflow_feu.py
+[2026-01-15T16:35:32.593+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/test_airflow_feu.py for tasks to queue
+[2026-01-15T16:35:32.597+0000] {logging_mixin.py:188} INFO - [2026-01-15T16:35:32.596+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/test_airflow_feu.py
+[2026-01-15T16:35:32.617+0000] {processor.py:840} INFO - DAG(s) 'test_simple_airflow_feu' retrieved from /opt/airflow/dags/test_airflow_feu.py
+[2026-01-15T16:35:32.643+0000] {logging_mixin.py:188} INFO - [2026-01-15T16:35:32.642+0000] {dag.py:3096} INFO - Sync 1 DAGs
+[2026-01-15T16:35:32.657+0000] {logging_mixin.py:188} INFO - [2026-01-15T16:35:32.657+0000] {dag.py:3954} INFO - Setting next_dagrun for test_simple_airflow_feu to None, run_after=None
+[2026-01-15T16:35:32.681+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/test_airflow_feu.py took 0.099 seconds
+[2026-01-15T16:36:02.864+0000] {processor.py:161} INFO - Started process (PID=42) to work on /opt/airflow/dags/test_airflow_feu.py
+[2026-01-15T16:36:02.865+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/test_airflow_feu.py for tasks to queue
+[2026-01-15T16:36:02.867+0000] {logging_mixin.py:188} INFO - [2026-01-15T16:36:02.867+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/test_airflow_feu.py
+[2026-01-15T16:36:02.902+0000] {processor.py:840} INFO - DAG(s) 'test_simple_airflow_feu' retrieved from /opt/airflow/dags/test_airflow_feu.py
+[2026-01-15T16:36:02.944+0000] {logging_mixin.py:188} INFO - [2026-01-15T16:36:02.944+0000] {dag.py:3096} INFO - Sync 1 DAGs
+[2026-01-15T16:36:02.954+0000] {logging_mixin.py:188} INFO - [2026-01-15T16:36:02.954+0000] {dag.py:3954} INFO - Setting next_dagrun for test_simple_airflow_feu to None, run_after=None
+[2026-01-15T16:36:02.971+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/test_airflow_feu.py took 0.111 seconds
+[2026-01-15T16:36:33.168+0000] {processor.py:161} INFO - Started process (PID=43) to work on /opt/airflow/dags/test_airflow_feu.py
+[2026-01-15T16:36:33.169+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/test_airflow_feu.py for tasks to queue
+[2026-01-15T16:36:33.170+0000] {logging_mixin.py:188} INFO - [2026-01-15T16:36:33.170+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/test_airflow_feu.py
+[2026-01-15T16:36:33.185+0000] {processor.py:840} INFO - DAG(s) 'test_simple_airflow_feu' retrieved from /opt/airflow/dags/test_airflow_feu.py
+[2026-01-15T16:36:33.212+0000] {logging_mixin.py:188} INFO - [2026-01-15T16:36:33.212+0000] {dag.py:3096} INFO - Sync 1 DAGs
+[2026-01-15T16:36:33.221+0000] {logging_mixin.py:188} INFO - [2026-01-15T16:36:33.221+0000] {dag.py:3954} INFO - Setting next_dagrun for test_simple_airflow_feu to None, run_after=None
+[2026-01-15T16:36:33.247+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/test_airflow_feu.py took 0.088 seconds
